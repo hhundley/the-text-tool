@@ -6,7 +6,7 @@
   A PWA built to be a text editor that can function both online and offline. Utlizes indexedDB to store and cache text editor content.
 
   ## Link to Deployed Application
-  * [Heroku]()
+  * [Heroku](https://secret-scrubland-70160.herokuapp.com/)
 
   
   ## Table of Contents
