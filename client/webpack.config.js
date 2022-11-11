@@ -15,54 +15,57 @@ module.exports = () => {
       path: path.resolve(__dirname, 'dist'),
     },
     plugins: [
-        // gen html and inject bundles
-        new HtmlWebpackPlugin({
-          template: './index.html',
-          title: 'the-text-tool'
-        }),
-        // injects service worker
-        new InjectManifest({
-          swSrc: './src-sw.js',
-          swDest: 'src-sw.js',
-        }),
-        // create manifest.json
-        new WebpackPwaManifest({
-          fingerprints: false,
-          inject: true,
-          name: 'the-text-tool',
-          short_name: 'jate',
-          description: 'just another text editor',
-          background_color: '#225ca3',
-          theme_color: '#225ca3',
-          start_url: '/',
-          publicPath: '/',
-          icons: [
-            {
-              src: path.resolve('src/images/logo.png'),
-              sizes: [96, 128, 192, 256, 384, 512],
-              destination: path.join('assets', 'icons'),
-            },
-          ],
-        }),
+      new HtmlWebpackPlugin({
+        template: "./index.html",
+        title: "jate",
+      }),
+      // injects our custom service work from src-sw.js
+      new InjectManifest({
+        swSrc: "./src-sw.js",
+        swDest: "src-sw.js",
+      }),
+      // creates a manifest.json file
+      new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
+        name: "Just Another Text Editor",
+        short_name: "jate",
+        description: "text editor pwa",
+        background_color: "#225ca3",
+        theme_color: "#225ca3",
+        start_url: "/",
+        publicPath: "/",
+        icons: [
+          {
+            src: path.resolve("src/images/logo.png"),
+            sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
+            destination: path.join("assets", "icons"),
+          },
+        ],
+      }),
     ],
 
     module: {
       rules: [
         {
-          test: /\.css$/i,
+          test: /\.css$/,
           use: ['style-loader', 'css-loader'],
         },
         {
           test: /\.m?js$/,
           exclude: /node_modules/,
           use: {
-            loader: 'babel-loader',
+            loader: "babel-loader",
             options: {
-              presets: ['@babel/preset-env'],
-              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
+              presets: ["@babel/preset-env"],
+              plugins: [
+                "@babel/plugin-proposal-object-rest-spread",
+                "@babel/transform-runtime",
+              ],
             },
           },
-        },
+        }
+        
       ],
     },
   };
