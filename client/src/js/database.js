@@ -14,6 +14,7 @@ const initdb = async () =>
 
 // TODO: Add logic to a method that accepts some content and adds it to the database
 export const putDb = async (content) => {
+  try{
   console.log('PUT request to update jateDB');
   // Create connection
   const jateDb = await openDB('jate', 1);
@@ -25,7 +26,10 @@ export const putDb = async (content) => {
   const req = objStore.put({ jate: content })
   // confirmation
   const result = await request;
-  console.log('🚀 - data updated', result);
+  console.log('🚀 - data updated', result); }
+  catch(err) {
+    console.log("awaiting content");
+};
 };
 
 // TODO: Add logic for a method that gets all the content from the database
